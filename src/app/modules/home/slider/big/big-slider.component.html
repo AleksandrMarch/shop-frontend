@@ -1,0 +1,30 @@
+<!-- Start slider -->
+<section id="aa-slider">
+  <div class="aa-slider-area">
+    <div id="sequence" class="seq">
+      <div class="seq-screen">
+        <ul class="seq-canvas">
+          <!-- single slide item -->
+          <li *ngFor="let item of SliderItems">
+            <div class="seq-model">
+              <img data-seq src="{{item.img}}" alt="Men slide img" />
+            </div>
+            <div class="seq-title">
+              <span data-seq>{{item.additional_text}}</span>
+              <h2 data-seq>{{item.title}}</h2>
+              <p data-seq>{{item.description}}</p>
+              <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">{{item.button_title}}</a>
+            </div>
+          </li>
+          <!-- end item -->
+        </ul>
+      </div>
+      <!-- slider navigation btn -->
+      <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
+        <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
+        <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
+      </fieldset>
+    </div>
+  </div>
+</section>
+<!-- / slider -->

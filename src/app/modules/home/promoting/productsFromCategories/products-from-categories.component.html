@@ -1,0 +1,58 @@
+<!-- Products section -->
+<section id="aa-product">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="aa-product-area">
+            <div class="aa-product-inner">
+              <!-- start prduct navigation -->
+              <ul class="nav nav-tabs aa-products-tab">
+                <li *ngFor="let CategoryItem of Data; first as isFirst" [ngClass]="{'active': isFirst}">
+                  <a href="#tab{{CategoryItem.title}}" data-toggle="tab">{{CategoryItem.title}}</a>
+                </li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <!-- Start product category -->
+                <div *ngFor="let CategoryItem of Data; first as isFirst"
+                     class="tab-pane fade in"
+                     id="tab{{CategoryItem.title}}"
+                     [ngClass]="{'active': isFirst}"
+                >
+                  <ul class="aa-product-catg">
+                    <!-- start single product item -->
+                    <li *ngFor="let ProductItem of CategoryItem.products">
+                      <figure>
+                        <a class="aa-product-img" routerLink="/product">
+                          <img src="{{ProductItem.img}}" alt="polo shirt img">
+                        </a>
+                        <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                        <figcaption>
+                          <h4 class="aa-product-title">
+                            <a routerLink="/product">{{ProductItem.title}}</a>
+                          </h4>
+                          <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>${{ProductItem.price}}</del></span>
+                        </figcaption>
+                      </figure>
+                      <div class="aa-product-hvr-content">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                        <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                      </div>
+                      <!-- product badge -->
+                      <span class="aa-badge aa-sale" href="#">SALE!</span>
+                    </li>
+                  </ul>
+                  <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                </div>
+                <!-- / product category -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Products section -->

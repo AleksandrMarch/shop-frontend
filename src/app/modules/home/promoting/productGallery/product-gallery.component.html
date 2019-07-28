@@ -1,0 +1,40 @@
+<!-- Start Promo section -->
+<section id="aa-promo">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-promo-area">
+          <div class="row">
+            <!-- promo left -->
+            <div class="col-md-5 no-padding">
+              <div class="aa-promo-left">
+                <div class="aa-promo-banner">
+                  <img src="{{GalleryItems[0].img}}" alt="img">
+                  <div class="aa-prom-content">
+                    <span>{{GalleryItems[0].description}}</span>
+                    <h4><a href="#">{{GalleryItems[0].href}}</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- promo right -->
+            <div class="col-md-7 no-padding">
+              <div class="aa-promo-right">
+                <div *ngFor="let item of GalleryItems | slice:1; let i = index;" class="aa-single-promo-right">
+                  <div class="aa-promo-banner">
+                    <img src="{{item.img}}" alt="img">
+                    <div class="aa-prom-content">
+                      <span>{{item.description}}</span>
+                      <h4><a href="#">{{item.title}}</a></h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Promo section -->

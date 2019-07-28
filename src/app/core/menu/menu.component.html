@@ -1,0 +1,36 @@
+<!-- menu -->
+<section id="menu">
+  <div class="container">
+    <div class="menu-area">
+      <!-- Navbar -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <!-- Left nav -->
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <ng-template #recursiveList let-categoryList>
+              <li *ngFor="let category of categoryList">
+                <a href="#">{{ category.title }}
+                  <span *ngIf="category?.children.length" class="caret"></span>
+                </a>
+                <ul *ngIf="category?.children.length" class="dropdown-menu">
+                  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: category.children }"></ng-container>
+                </ul>
+              </li>
+            </ng-template>
+            <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: categoryList }"></ng-container>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / menu -->
