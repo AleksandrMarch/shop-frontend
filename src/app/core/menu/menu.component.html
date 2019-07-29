@@ -15,10 +15,10 @@
         <div class="navbar-collapse collapse">
           <!-- Left nav -->
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
+            <li><a routerLink="/">Home</a></li>
             <ng-template #recursiveList let-categoryList>
               <li *ngFor="let category of categoryList">
-                <a href="#">{{ category.title }}
+                <a routerLink="/category">{{ category.title }}
                   <span *ngIf="category?.children.length" class="caret"></span>
                 </a>
                 <ul *ngIf="category?.children.length" class="dropdown-menu">
@@ -28,7 +28,8 @@
             </ng-template>
             <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: categoryList }"></ng-container>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+        <!--/.nav-collapse -->
       </div>
     </div>
   </div>

@@ -23,6 +23,10 @@ const routes: Routes = [
             {
                 path: 'checkout',
                 loadChildren: '../modules/checkout/checkout.module#CheckoutModule'
+            },
+            {
+              path: 'user',
+              loadChildren: '../modules/user/user.module#UserModule'
             }
         ]
     },

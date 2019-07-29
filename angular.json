@@ -38,14 +38,12 @@
               "src/assets/css/font-awesome.css",
               "src/assets/css/jquery.simpleLens.css",
               "src/assets/css/nouislider.css",
-              "src/assets/css/jquery.smartmenus.bootstrap.css",
-              "src/assets/css/admin/dashboard.css"
+              "src/assets/css/jquery.smartmenus.bootstrap.css"
             ],
             "scripts": [
               "src/assets/js/jquery.min.js",
               "src/assets/js/bootstrap.js",
               "src/assets/js/jquery.smartmenus.js",
-              "src/assets/js/jquery.smartmenus.bootstrap.js",
               "src/assets/js/jquery.simpleGallery.js",
               "src/assets/js/jquery.simpleLens.js",
               "src/assets/js/sequence.js",
