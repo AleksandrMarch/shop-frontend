@@ -14,8 +14,11 @@ export class HttpService {
     private http: HttpClient,
   ) {}
 
-  get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(this.BACKEND_PREFIX + path, { params });
+  get<T>(path: string, params: HttpParams = new HttpParams(), headers = {}): Observable<T> {
+    return this.http.get<T>(
+      'http://localhost:8080' + this.BACKEND_PREFIX + path,
+      { params, headers }
+      );
   }
 
   put(path: string, body: any): Observable<any> {
@@ -25,16 +28,18 @@ export class HttpService {
     ).pipe(catchError(this.formatErrors));
   }
 
-  post(path: string, body: any): Observable<any> {
+  post(path: string, body: any = {}, headersObj = {}): Observable<any> {
     return this.http.post(
-      this.BACKEND_PREFIX + path,
-      JSON.stringify(body)
+      'http://localhost:8080' + this.BACKEND_PREFIX + path,
+      JSON.stringify(body),
+      {headers : headersObj}
     ).pipe(catchError(this.formatErrors));
   }
 
-  delete(path): Observable<any> {
+  delete(path, headersObj = {}): Observable<any> {
     return this.http.delete(
-      this.BACKEND_PREFIX + path
+      'http://localhost:8080' + this.BACKEND_PREFIX + path,
+      {headers : headersObj}
     ).pipe(catchError(this.formatErrors));
   }
 

@@ -7,12 +7,15 @@
             <div class="col-md-6">
               <div class="aa-myaccount-login">
                 <h4>Login</h4>
-                <form action="" class="aa-login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                  <label for="">Username or Email address<span>*</span></label>
-                  <input type="text" placeholder="Username or email" formControlName="login">
-                  <label for="">Password<span>*</span></label>
-                  <input type="password" placeholder="Password" formControlName="password">
+                <form action="" class="aa-login-form" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+                  <label>Username or Email address<span>*</span>
+                    <input type="text" placeholder="Username or email" formControlName="login">
+                  </label>
+                  <label>Password<span>*</span>
+                    <input type="password" placeholder="Password" formControlName="password">
+                  </label>
                   <button type="submit" class="aa-browse-btn">Login</button>
+                  <button type="button" (click)="logout()" class="aa-browse-btn">Logout</button>
                   <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
                   <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
                 </form>
@@ -21,11 +24,13 @@
             <div class="col-md-6">
               <div class="aa-myaccount-register">
                 <h4>Register</h4>
-                <form action="" class="aa-login-form">
-                  <label for="">Username or Email address<span>*</span></label>
-                  <input type="text" placeholder="Username or email">
-                  <label for="">Password<span>*</span></label>
-                  <input type="password" placeholder="Password">
+                <form action="" class="aa-login-form" [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+                  <label>Username or Email address<span>*</span>
+                    <input type="text" placeholder="Username or email" formControlName="userName">
+                  </label>
+                  <label>Password<span>*</span>
+                    <input type="password" placeholder="Password" formControlName="password">
+                  </label>
                   <button type="submit" class="aa-browse-btn">Register</button>
                 </form>
               </div>

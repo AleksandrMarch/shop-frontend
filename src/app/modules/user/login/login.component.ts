@@ -18,10 +18,26 @@ export class LoginComponent {
     password: new FormControl(''),
   });
 
-  onSubmit() {
+  public registerForm = new FormGroup({
+    userName: new FormControl(''),
+    password: new FormControl(''),
+  });
+
+  onSubmitLogin() {
     this.authService.login(
       this.loginForm.get('login').value,
       this.loginForm.get('password').value
     );
+  }
+
+  onSubmitRegister() {
+    this.authService.register(
+      this.registerForm.get('userName').value,
+      this.registerForm.get('password').value,
+    );
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
