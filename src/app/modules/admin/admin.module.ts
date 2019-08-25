@@ -8,6 +8,7 @@ import { AdminDashboardComponent } from './dashboard/dashboard.component';
 import { AdminCatalogComponent } from './catalog/catalog.component';
 import { AdminOrdersComponent } from './orders/orders.component';
 import { AdminPromotingComponent } from './promoting/promoting.component';
+import { CoreMaterialModule } from '../../core/material.module';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { AdminPromotingComponent } from './promoting/promoting.component';
         AdminDashboardComponent
     ],
   imports: [
+        CoreMaterialModule,
         AdminRoutingModule,
         CommonModule,
     ],

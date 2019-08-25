@@ -3,12 +3,8 @@ import { ProductViewComponent } from './productView/product-view.component';
 import {MatDialog} from '@angular/material';
 import {HttpService} from '../../../shared/services/http.service';
 import {ENDPOINTS} from '../../../core/endpoints';
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-}
+import {Product} from '../../../core/interfaces';
+import {CategoryViewComponent} from './categoryView/category-view.component';
 
 @Component({
     selector: 'app-admin-catalog',
@@ -22,9 +18,7 @@ export class AdminCatalogComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private http: HttpService,
-  ) {
-    console.log('tes');
-  }
+  ) {}
 
   ngOnInit() {
     this.loadProductList();
@@ -37,8 +31,15 @@ export class AdminCatalogComponent implements OnInit {
         });
   }
 
+  openCategoryDialog() {
+    const dialogRef = this.dialog.open(CategoryViewComponent, {
+      height: '400px',
+      width: '600px',
+    });
+  }
+
   loadProductList() {
-    this.http.get<Product[]>(ENDPOINTS.admin_product)
+    this.http.get<Product[]>(ENDPOINTS.admin_products)
       .subscribe(
         (response: Product[]) => {
           this.productList = response;
@@ -47,7 +48,7 @@ export class AdminCatalogComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    this.http.delete(ENDPOINTS.admin_product + '/' + id)
+    this.http.delete(ENDPOINTS.admin_products + '/' + id)
       .subscribe(
           response => console.log(response)
       );

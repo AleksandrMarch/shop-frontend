@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpService} from '../../../../shared/services/http.service';
 import {ENDPOINTS} from '../../../../core/endpoints';
+import {Category} from '../../../../core/interfaces';
+import {AdminCatalogService} from '../../services/admin-catalog.service';
 
 @Component({
     selector: 'app-admin-product-view',
@@ -13,10 +15,12 @@ import {ENDPOINTS} from '../../../../core/endpoints';
 export class ProductViewComponent implements OnInit {
 
     private product: FormGroup;
+    private categories: Category[];
 
     constructor(
       public dialogRef: MatDialogRef<ProductViewComponent>,
-      private http: HttpService
+      private http: HttpService,
+      private catalogService: AdminCatalogService
     ) { }
 
     ngOnInit(): void {
@@ -29,14 +33,16 @@ export class ProductViewComponent implements OnInit {
           image: new FormControl(''),
         }
       );
+
+      this.catalogService.getAllCategories()
+        .subscribe((categories: Category[]) => this.categories = categories);
     }
 
     save(): void {
       const headers = {'Content-Type': 'application/json'};
-      this.http.post(ENDPOINTS.admin_product, this.product.value, headers)
+      this.http.post(ENDPOINTS.admin_products, this.product.value, headers)
         .subscribe(
           response => {
-            console.log(response);
             this.closeDialog();
           }
         );

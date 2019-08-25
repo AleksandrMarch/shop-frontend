@@ -1,11 +1,12 @@
 const ADMIN_PREFIX = '/admin';
 
 export const ENDPOINTS = {
-  product: '/product',
-  category: '/category',
+  products: '/products',
+  categories: '/categories',
   login: '/login',
   logout: '/logout',
   register: '/user/register',
   // admin
-  admin_product: ADMIN_PREFIX + '/product',
+  admin_products: ADMIN_PREFIX + '/products',
+  admin_categories: ADMIN_PREFIX + '/categories',
 };

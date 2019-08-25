@@ -1,37 +1,52 @@
-<div class="btn-group btn-group-lg" role="group" aria-label="...">
-    <button (click)="openProductDialog()" type="button" class="btn btn-default">New Product</button>
-    <button type="button" class="btn btn-default">Middle</button>
-    <button type="button" class="btn btn-default">Right</button>
-</div>
+<h1 class="page-header">Catalog</h1>
 
-<div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Product list</div>
+<mat-tab-group>
+  <mat-tab label="Products">
+    <ng-template matTabContent>
+      <div class="btn-group btn-group-lg" role="group" aria-label="...">
+        <button (click)="openProductDialog()" type="button" class="btn btn-default">New product</button>
+      </div>
 
-    <!-- Table -->
-    <table class="table">
-        <thead>
-            <tr>
-                <td>title</td>
-                <td>description</td>
-                <td>action</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of productList">
-                <td>{{product.title}}</td>
-                <td>{{product.description}}</td>
-                <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">...<span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#" (click)="deleteProduct(product.id)">Delete</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Other</a></li>
-                    </ul>
-                  </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Product list</div>
+
+        <!-- Table -->
+        <table class="table">
+          <thead>
+          <tr>
+            <td>title</td>
+            <td>description</td>
+            <td>action</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of productList">
+            <td>{{product.title}}</td>
+            <td>{{product.description}}</td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">...<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#" (click)="deleteProduct(product.id)">Delete</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Other</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Categories">
+    <ng-template matTabContent>
+      <div class="btn-group btn-group-lg" role="group" aria-label="...">
+        <button (click)="openCategoryDialog()" type="button" class="btn btn-default">New category</button>
+      </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+

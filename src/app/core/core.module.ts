@@ -15,6 +15,7 @@ import { BaseLayoutComponent } from './base-layout.component';
 
 // dialogs
 import {ProductViewComponent} from '../modules/admin/catalog/productView/product-view.component';
+import {CategoryViewComponent} from '../modules/admin/catalog/categoryView/category-view.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material';
@@ -27,6 +28,7 @@ import {AuthService} from '../shared/services/auth.service';
 @NgModule({
     declarations: [
       ProductViewComponent,
+      CategoryViewComponent,
       CoreComponent,
       FooterComponent,
       HeaderComponent,
@@ -44,7 +46,10 @@ import {AuthService} from '../shared/services/auth.service';
       ReactiveFormsModule,
       FormsModule,
     ],
-    entryComponents: [ProductViewComponent],
+    entryComponents: [
+      ProductViewComponent,
+      CategoryViewComponent,
+    ],
     providers: [
       {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
       HttpClient,
