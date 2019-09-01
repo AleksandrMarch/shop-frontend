@@ -48,6 +48,20 @@ export class ProductViewComponent implements OnInit {
         );
     }
 
+    onFileSelected() {
+      const inputNode: any = document.querySelector('#file');
+
+      if (typeof (FileReader) !== 'undefined') {
+        const reader = new FileReader();
+
+        // reader.onload = (e: any) => {
+        //   this.srcResult = e.target.result;
+        // };
+
+        reader.readAsArrayBuffer(inputNode.files[0]);
+      }
+    }
+
     closeDialog(): void {
         this.dialogRef.close();
     }

@@ -1,28 +1,33 @@
+// modules
 import { NgModule } from '@angular/core';
-
 import {CommonModule} from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
+import { CoreMaterialModule } from '../../core/material.module';
 
+// components
 import { AdminComponent } from './admin.component';
 import { AdminDashboardComponent } from './dashboard/dashboard.component';
 import { AdminCatalogComponent } from './catalog/catalog.component';
 import { AdminOrdersComponent } from './orders/orders.component';
 import { AdminPromotingComponent } from './promoting/promoting.component';
-import { CoreMaterialModule } from '../../core/material.module';
+import { ImageContainerComponent } from './catalog/imageContainer/image-container.component';
 
 @NgModule({
-    declarations: [
-        AdminComponent,
-        AdminOrdersComponent,
-        AdminPromotingComponent,
-        AdminCatalogComponent,
-        AdminDashboardComponent
-    ],
+  declarations: [
+    AdminComponent,
+    AdminOrdersComponent,
+    AdminPromotingComponent,
+    AdminCatalogComponent,
+    AdminDashboardComponent,
+    ImageContainerComponent,
+  ],
   imports: [
-        CoreMaterialModule,
-        AdminRoutingModule,
-        CommonModule,
-    ],
+    CoreMaterialModule,
+    AdminRoutingModule,
+    CommonModule,
+  ],
   providers: [],
+  exports: [
+  ]
 })
 export class AdminModule { }

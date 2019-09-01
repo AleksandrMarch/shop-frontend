@@ -35,8 +35,11 @@
       </div>
     </mat-tab>
     <mat-tab label="Images">
-      <h1>test</h1>
-      <input type="file" formControlName="image">
+      <ng-template image-container></ng-template>
+      <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+      <div class="hidden">
+        <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" formControlName="image">
+      </div>
     </mat-tab>
     <mat-tab label="Properties">
       <h1>Some more tab content</h1>

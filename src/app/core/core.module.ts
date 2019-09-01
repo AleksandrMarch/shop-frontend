@@ -25,6 +25,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {HttpService} from '../shared/services/http.service';
 import {AuthService} from '../shared/services/auth.service';
 
+// directives
+import {ImageContainerDirective} from '../modules/admin/catalog/imageContainer/image-container.directive';
+
 @NgModule({
     declarations: [
       ProductViewComponent,
@@ -33,7 +36,8 @@ import {AuthService} from '../shared/services/auth.service';
       FooterComponent,
       HeaderComponent,
       MenuComponent,
-      BaseLayoutComponent
+      BaseLayoutComponent,
+      ImageContainerDirective
     ],
     imports: [
       BrowserModule,
