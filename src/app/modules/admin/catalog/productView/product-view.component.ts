@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
+import {MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpService} from '../../../../shared/services/http.service';
 import {ENDPOINTS} from '../../../../core/endpoints';
 import {Category} from '../../../../core/interfaces';
 import {AdminCatalogService} from '../../services/admin-catalog.service';
+import {ImageContainerComponent} from '../imageContainer/image-container.component';
+import {ImageContainerDirective} from '../imageContainer/image-container.directive';
 
 @Component({
     selector: 'app-admin-product-view',
@@ -16,16 +18,20 @@ export class ProductViewComponent implements OnInit {
 
     private product: FormGroup;
     private categories: Category[];
+    private productId: number;
+    @ViewChild(ImageContainerDirective, {static: true}) imageHost: ImageContainerDirective;
 
     constructor(
       public dialogRef: MatDialogRef<ProductViewComponent>,
       private http: HttpService,
-      private catalogService: AdminCatalogService
+      private catalogService: AdminCatalogService,
+      private componentFactoryResolver: ComponentFactoryResolver
     ) { }
 
     ngOnInit(): void {
       this.product = new FormGroup(
         {
+          id: new FormControl(this.productId),
           title: new FormControl(''),
           description: new FormControl(''),
           amount: new FormControl(''),
@@ -34,13 +40,14 @@ export class ProductViewComponent implements OnInit {
         }
       );
 
+      this.loadImageContainer();
+
       this.catalogService.getAllCategories()
         .subscribe((categories: Category[]) => this.categories = categories);
     }
 
     save(): void {
-      const headers = {'Content-Type': 'application/json'};
-      this.http.post(ENDPOINTS.admin_products, this.product.value, headers)
+      this.http.patch(ENDPOINTS.admin_products, this.product.value)
         .subscribe(
           response => {
             this.closeDialog();
@@ -48,7 +55,7 @@ export class ProductViewComponent implements OnInit {
         );
     }
 
-    onFileSelected() {
+    onFileSelected(): void {
       const inputNode: any = document.querySelector('#file');
 
       if (typeof (FileReader) !== 'undefined') {
@@ -60,6 +67,13 @@ export class ProductViewComponent implements OnInit {
 
         reader.readAsArrayBuffer(inputNode.files[0]);
       }
+    }
+
+    loadImageContainer(): void {
+      const componentFactory =
+        this.componentFactoryResolver.resolveComponentFactory(ImageContainerComponent);
+      const componentRef =
+        this.imageHost.viewCointainerRef.createComponent(componentFactory);
     }
 
     closeDialog(): void {

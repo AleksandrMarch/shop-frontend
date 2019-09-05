@@ -5,6 +5,7 @@ import {HttpService} from '../../../shared/services/http.service';
 import {ENDPOINTS} from '../../../core/endpoints';
 import {Product} from '../../../core/interfaces';
 import {CategoryViewComponent} from './categoryView/category-view.component';
+import {ProductService} from './services/product.service';
 
 @Component({
     selector: 'app-admin-catalog',
@@ -18,17 +19,28 @@ export class AdminCatalogComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private http: HttpService,
+    private productService: ProductService,
   ) {}
 
   ngOnInit() {
     this.loadProductList();
   }
 
-  openProductDialog() {
-      const dialogRef = this.dialog.open(ProductViewComponent, {
-            height: '400px',
-            width: '600px',
-        });
+  openProductDialog(productId: number) {
+    const dialogRef = this.dialog.open(ProductViewComponent, {
+      height: '400px',
+      width: '600px',
+      data: {productId: productId},
+    });
+  }
+
+  createProduct() {
+    this.productService.createTemporaryProduct()
+      .subscribe(
+        (productId: number) => {
+          this.openProductDialog(productId);
+        }
+      )
   }
 
   openCategoryDialog() {

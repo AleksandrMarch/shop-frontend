@@ -37,8 +37,7 @@ export class CategoryViewComponent implements OnInit {
   }
 
   save(): void {
-    const headers = {'Content-Type': 'application/json'};
-    this.http.post(ENDPOINTS.admin_categories, this.category.value, headers)
+    this.http.post(ENDPOINTS.admin_categories, this.category.value)
       .subscribe(
         response => {
           this.closeDialog();

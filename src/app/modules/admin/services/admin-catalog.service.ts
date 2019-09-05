@@ -12,7 +12,7 @@ export class AdminCatalogService {
   constructor(private http: HttpService) { }
 
   public getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(ENDPOINTS.admin_categories);
+    return this.http.get<Category[]>(ENDPOINTS.categories);
   }
 
 }

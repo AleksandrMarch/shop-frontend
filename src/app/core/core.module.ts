@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { BaseLayoutComponent } from './base-layout.component';
+import { ImageContainerComponent} from '../modules/admin/catalog/imageContainer/image-container.component';
 
 // dialogs
 import {ProductViewComponent} from '../modules/admin/catalog/productView/product-view.component';
@@ -37,7 +38,8 @@ import {ImageContainerDirective} from '../modules/admin/catalog/imageContainer/i
       HeaderComponent,
       MenuComponent,
       BaseLayoutComponent,
-      ImageContainerDirective
+      ImageContainerDirective,
+      ImageContainerComponent
     ],
     imports: [
       BrowserModule,
@@ -53,6 +55,7 @@ import {ImageContainerDirective} from '../modules/admin/catalog/imageContainer/i
     entryComponents: [
       ProductViewComponent,
       CategoryViewComponent,
+      ImageContainerComponent
     ],
     providers: [
       {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},

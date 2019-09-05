@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +28,23 @@ export class HttpService {
     ).pipe(catchError(this.formatErrors));
   }
 
-  post(path: string, body: any = {}, headersObj = {}): Observable<any> {
-    return this.http.post(
+  post<T>(path: string, body: any = {}, headers: HttpHeaders = new HttpHeaders()): Observable<T> {
+    headers = headers.set('Content-type', 'application/json');
+
+    return this.http.post<T>(
       'http://localhost:8080' + this.BACKEND_PREFIX + path,
       JSON.stringify(body),
-      {headers : headersObj}
+      {headers : headers}
+    ).pipe(catchError(this.formatErrors));
+  }
+
+  patch<T>(path: string, body: any = {}, headers: HttpHeaders = new HttpHeaders()): Observable<T> {
+    headers = headers.set('Content-type', 'application/json');
+
+    return this.http.patch<T>(
+      'http://localhost:8080' + this.BACKEND_PREFIX + path,
+      JSON.stringify(body),
+      {headers : headers}
     ).pipe(catchError(this.formatErrors));
   }
 

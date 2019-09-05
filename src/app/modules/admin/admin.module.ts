@@ -10,7 +10,6 @@ import { AdminDashboardComponent } from './dashboard/dashboard.component';
 import { AdminCatalogComponent } from './catalog/catalog.component';
 import { AdminOrdersComponent } from './orders/orders.component';
 import { AdminPromotingComponent } from './promoting/promoting.component';
-import { ImageContainerComponent } from './catalog/imageContainer/image-container.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { ImageContainerComponent } from './catalog/imageContainer/image-containe
     AdminPromotingComponent,
     AdminCatalogComponent,
     AdminDashboardComponent,
-    ImageContainerComponent,
   ],
   imports: [
     CoreMaterialModule,
