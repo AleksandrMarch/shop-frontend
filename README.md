@@ -1,3 +1,5 @@
+# Just started e-commerce project. This is a frontend part. Works on angular v8.
+
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
