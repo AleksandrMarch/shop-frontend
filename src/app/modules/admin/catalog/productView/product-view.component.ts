@@ -1,12 +1,13 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {Component, ComponentFactoryResolver, Inject, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpService} from '../../../../shared/services/http.service';
 import {ENDPOINTS} from '../../../../core/endpoints';
-import {Category} from '../../../../core/interfaces';
+import {Category, Product} from '../../../../core/interfaces';
 import {AdminCatalogService} from '../../services/admin-catalog.service';
 import {ImageContainerComponent} from '../imageContainer/image-container.component';
 import {ImageContainerDirective} from '../imageContainer/image-container.directive';
+import {ProductService} from '../services/product.service';
 
 @Component({
     selector: 'app-admin-product-view',
@@ -16,22 +17,26 @@ import {ImageContainerDirective} from '../imageContainer/image-container.directi
 
 export class ProductViewComponent implements OnInit {
 
-    private product: FormGroup;
-    private categories: Category[];
-    private productId: number;
-    @ViewChild(ImageContainerDirective, {static: true}) imageHost: ImageContainerDirective;
+  private productId: number;
+  private product: FormGroup;
+  private categories: Category[];
+  @ViewChild(ImageContainerDirective, {static: true}) imageHost: ImageContainerDirective;
 
     constructor(
       public dialogRef: MatDialogRef<ProductViewComponent>,
       private http: HttpService,
       private catalogService: AdminCatalogService,
-      private componentFactoryResolver: ComponentFactoryResolver
-    ) { }
+      private productService: ProductService,
+      private componentFactoryResolver: ComponentFactoryResolver,
+      @Inject(MAT_DIALOG_DATA) public data
+    ) {
+      this.productId = data.productId;
+    }
 
     ngOnInit(): void {
       this.product = new FormGroup(
         {
-          id: new FormControl(this.productId),
+          id: new FormControl(''),
           title: new FormControl(''),
           description: new FormControl(''),
           amount: new FormControl(''),
@@ -41,6 +46,7 @@ export class ProductViewComponent implements OnInit {
       );
 
       this.loadImageContainer();
+      this.loadProduct();
 
       this.catalogService.getAllCategories()
         .subscribe((categories: Category[]) => this.categories = categories);
@@ -74,6 +80,15 @@ export class ProductViewComponent implements OnInit {
         this.componentFactoryResolver.resolveComponentFactory(ImageContainerComponent);
       const componentRef =
         this.imageHost.viewCointainerRef.createComponent(componentFactory);
+    }
+
+    loadProduct(): void {
+      this.productService.getProduct(this.productId)
+        .subscribe(
+          (product: Product) => {
+            this.product.patchValue(product);
+          }
+        );
     }
 
     closeDialog(): void {

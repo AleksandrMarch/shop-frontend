@@ -25,4 +25,7 @@ export class ProductService {
     return this.http.post<number>(ENDPOINTS.admin_products, product);
   }
 
+  getProduct(productId: number): Observable<Product> {
+    return this.http.get<Product>(ENDPOINTS.admin_products + '/' + productId);
+  }
 }

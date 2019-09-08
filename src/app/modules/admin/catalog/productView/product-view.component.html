@@ -1,5 +1,5 @@
 <form class="example-form" [formGroup]="product">
-  <input type="hidden" formControl="id">
+  <input type="hidden" value="{{ productId }}" formControlName="id">
   <mat-tab-group>
     <mat-tab label="Info">
       <div class="row">

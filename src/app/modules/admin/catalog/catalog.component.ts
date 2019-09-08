@@ -43,6 +43,10 @@ export class AdminCatalogComponent implements OnInit {
       )
   }
 
+  editProduct(productId: number) {
+    this.openProductDialog(productId);
+  }
+
   openCategoryDialog() {
     const dialogRef = this.dialog.open(CategoryViewComponent, {
       height: '400px',
